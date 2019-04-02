@@ -1,7 +1,6 @@
 package com.example.hw1a;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +18,7 @@ public class Main3Activity extends AppCompatActivity {
         okButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent soundIntent = new Intent(getApplicationContext(),MainActivity.class);
-                Spinner spinner = (Spinner) findViewById(R.id.spinner);
+                Spinner spinner = findViewById(R.id.spinner);
                 String text = spinner.getSelectedItem().toString();
                 switch (text){
                     case "Sound 1": song_id=0; break;
@@ -29,8 +27,12 @@ public class Main3Activity extends AppCompatActivity {
                     case "Sound 4": song_id=3; break;
                     case "Sound 5": song_id=4; break;
                 }
-                soundIntent.putExtra("soundID",song_id);
-                startActivity(soundIntent);
+
+                Intent data = new Intent();
+                data.putExtra(MainActivity.SOUND_ID,song_id);
+                data.putExtra(MainActivity.INTENT_ID,"song");
+                setResult(RESULT_OK,data);
+                finish();
             }
         });
 
@@ -38,12 +40,7 @@ public class Main3Activity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = getIntent();
-                Bundle bd = intent.getExtras();
-                song_id=(int) bd.get("current_sound");
-                Intent soundIntent = new Intent(getApplicationContext(),MainActivity.class);
-                soundIntent.putExtra("soundID",song_id);
-                startActivity(soundIntent);
+                finish();
             }
         });
     }

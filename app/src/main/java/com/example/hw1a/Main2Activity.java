@@ -19,13 +19,11 @@ public class Main2Activity extends AppCompatActivity {
         okButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = getIntent();
-                Bundle bd = intent.getExtras();
-                int song_id=(int) bd.get("current_sound");
-                Intent contactIntent = new Intent(getApplicationContext(),MainActivity.class);
-                contactIntent.putExtra("soundID",song_id);
-                contactIntent.putExtra("contactName",selected_name);
-                startActivity(contactIntent);
+                Intent data = new Intent();
+                data.putExtra(MainActivity.CONTACT_ID,selected_name);
+                data.putExtra(MainActivity.INTENT_ID,"name");
+                setResult(RESULT_OK,data);
+                finish();
             }
         });
 
@@ -33,8 +31,7 @@ public class Main2Activity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent contactIntent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(contactIntent);
+                finish();
             }
         });
     }
