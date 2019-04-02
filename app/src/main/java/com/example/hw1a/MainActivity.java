@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static String current_name = "John Doe";
-    private int current_sound = 0;
+    private static int current_sound = 0;
     private MediaPlayer buttonPlayer;
     private boolean pause = true;
     public static final String SOUND_ID = "soundID";
